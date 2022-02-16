@@ -35,3 +35,4 @@ while True: #infinite loop
     #print(weather['temp'])#print data #only for testing purposes
     #print(weather['feels_like'])
     #print(weather['wind_speed'])
+    #key error for description may be incorrect api call, wrong index (message for Rhys)
