@@ -51,4 +51,4 @@ while True:
         da.push_row_to_db(bike_data)
 
     start_time = time.time()
-    time.sleep(60.0 - ((time.time() - start_time) % 60.0))  # runs script indefinitely every 60 seconds
+    time.sleep(900.0 - ((time.time() - start_time) % 900.0))  # runs script indefinitely every 15 minutes

@@ -11,7 +11,7 @@ Owners: The authoris are Victoria Keane, Rhys O' Dowd and Zaur Gouliev. https://
 ### Set Up
 Edit the global variables at the top of the DatabaseAccessor file as required.
 To set the password create an environment variable and populate it with the correct password `export PASSWORD=<password>`. 
-If you are using PyCharm set the environment variable by selecting `Edit Confirations` in the top bar, selecting `environment variables`
+If you are using PyCharm set the environment variable by selecting `Edit Configurations` in the top bar, selecting `environment variables`
 and adding a new variable `PASSWORD=<password>`.
 
 ### Create + Populate Static Database

@@ -2,10 +2,10 @@ from sqlalchemy import create_engine
 import json
 import os
 
-URI = 'dbikes14.crxlrwaajxdo.eu-west-1.rds.amazonaws.com'
+URI = 'project14rds.cfxfzxiykuet.us-east-1.rds.amazonaws.com'
 PORT = '3306'
-DB = 'dbikes14'
-USER = 'Administrator'
+DB = 'project14'
+USER = 'admin'
 PASSWORD = os.getenv('PASSWORD')
 ENGINE = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(USER, PASSWORD, URI, PORT, DB), echo=True)
 
