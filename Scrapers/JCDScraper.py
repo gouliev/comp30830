@@ -1,5 +1,6 @@
 import requests  # need to pip install
 import time
+import DatabaseAccessor
 
 '''using a station number retrieves data of that station, could be formulated another way'''
 
@@ -9,7 +10,7 @@ bike_stand_number = [42, 30, 54, 108, 56, 6, 18, 32, 52, 48, 13, 43, 31, 98, 23,
                      115, 117, 27, 8, 16, 82, 96, 76, 79, 71, 69, 51, 25, 37, 59, 95, 94, 105, 36, 22, 93, 22, 50, 110,
                      12, 34, 78, 75, 2,
                      111, 65, 26, 15, 10, 86, 100, 64, 24, 109, 85, 33, 107, 44, 89, 57, 80, 41, 3, 40, 29, 103, 28, 39,
-                     83, 92, 21, 88] #every bike stand in dublin
+                     83, 92, 21, 88]  # every bike stand in dublin
 api_key = "f9e09d85362311d1646d868797cbc7100ded0c8d"
 contract_name = "dublin"
 
@@ -41,12 +42,13 @@ def get_JCD(contract_name, station_number, api_key):
         'last_update': last_update
     }
 
+
+da = DatabaseAccessor
+da.create_availability_table()
 while True:
+    for a in range(len(bike_stand_number)):  # for each bike station in list
+        bike_data = get_JCD(contract_name, bike_stand_number[a], api_key)  # run method with specific bike station
+        da.push_row_to_db(bike_data)
+
     start_time = time.time()
-    time.sleep(60.0 - ((time.time() - start_time) % 60.0)) #runs script indefinitely every 60 seconds
-
-    for a in range(len(bike_stand_number)): #for each bike station in list
-        bike_data = get_JCD(contract_name, bike_stand_number[a], api_key)  #run method with specific bike station
-
-        print(bike_data['number'],bike_data['name'],bike_data['status'],bike_data['latitude'],bike_data['longitude'],
-        bike_data['bikes'],bike_data['stands'],bike_data['banking'],bike_data['last_update']) #printing for testing purposes
+    time.sleep(900.0 - ((time.time() - start_time) % 900.0))  # runs script indefinitely every 15 minutes
