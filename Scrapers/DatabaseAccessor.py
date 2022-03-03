@@ -1,12 +1,11 @@
 from sqlalchemy import create_engine
 import json
-import os
 
-URI = 'project14rds.cfxfzxiykuet.us-east-1.rds.amazonaws.com'
+URI = 'dbikes14.cumg3hfmqkkj.eu-west-1.rds.amazonaws.com'
 PORT = '3306'
 DB = 'project14'
 USER = 'admin'
-PASSWORD = os.getenv('PASSWORD')
+PASSWORD = 'Project14!'
 ENGINE = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(USER, PASSWORD, URI, PORT, DB), echo=True)
 
 def create_availability_table():
@@ -20,7 +19,7 @@ def create_availability_table():
     bikes INTEGER,
     bike_stands INTEGER,
     banking VARCHAR(10),
-    last_update INTEGER
+    last_update DATETIME
     )
     """
     try:
@@ -54,7 +53,7 @@ def create_static_table():
         print(e)
 
 def populate_static_table():
-    file = open('dublin.json')
+    file = open('/Users/os/comp30830/Scrapers/dublin.json')
     stations = json.load(file)
     for station in stations:
         vals = (int(station.get('number')), station.get('name'), station.get('address'),
