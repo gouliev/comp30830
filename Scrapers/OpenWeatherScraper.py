@@ -1,6 +1,7 @@
 import requests #need to pip install
 import math
 import time
+import json
 
 lat = "53.3498" #lat and long of Dublin city
 long = "6.2603"
@@ -32,7 +33,7 @@ while True: #infinite loop
     
     get_weather(api_key, lat, long)#call function
     weather = get_weather(api_key, lat, long) #access the dictionary 
-    #print(weather['temp'])#print data #only for testing purposes
-    #print(weather['feels_like'])
-    #print(weather['wind_speed'])
+    print(weather['temp'])#print data #only for testing purposes
+    print(weather['feels_like'])
+    print(weather['wind_speed'])
     #key error for description may be incorrect api call, wrong index (message for Rhys)
