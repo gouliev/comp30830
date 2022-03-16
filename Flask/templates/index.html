@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
+    <head>
+            <title>{{ title }}</title>
+        <link rel="stylesheet" href="/static/css/main.css" />
+    </head>
 <body>
-
-<h1>My First Heading</h1>
-
-<p>My first paragraph.</p>
-
+    <p> {{ weather.feels_like }}</p>
+    <p> {{ weather.description }}</p>
+    <figure class="image is-50x50">
+        <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+    </figure>
 </body>
 </html>
-
