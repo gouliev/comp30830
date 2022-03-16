@@ -1,3 +1,6 @@
+#!/bin/usr/python
+
+
 from sqlalchemy import create_engine
 import json
 
@@ -19,7 +22,7 @@ def create_availability_table():
     bikes INTEGER,
     bike_stands INTEGER,
     banking VARCHAR(10),
-    last_update DATETIME
+    last_update BIGINT(14)
     )
     """
     try:
@@ -32,6 +35,29 @@ def push_row_to_db(data: dict):
     try:
         res = ENGINE.execute(
             f"INSERT INTO availability values('{data['number']}','{data['name']}','{data['status']}','{data['latitude']}','{data['longitude']}','{data['bikes']}','{data['stands']}','{data['banking']}','{data['last_update']}')")
+        print(res.fetchall())
+    except Exception as e:
+        print(e)
+
+def create_weather_table():
+    sql = """
+    CREATE TABLE IF NOT EXISTS weather (
+    temp INTEGER, 
+    feels_like INTEGER,
+    wind_speed INTEGER,
+    last_update BIGINT(14)
+    )
+    """
+    try:
+        res = ENGINE.execute(sql)
+        print(res.fetchall())
+    except Exception as e:
+        print(e)
+
+def push_to_weather(data: dict):
+    try:
+        res = ENGINE.execute(
+            f"INSERT INTO weather values('{data['temp']}','{data['feels_like']}','{data['wind_speed']}','{data['last_update']})'")
         print(res.fetchall())
     except Exception as e:
         print(e)
