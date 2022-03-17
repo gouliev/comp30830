@@ -1,3 +1,6 @@
+#!/bin/usr/python
+
+
 import requests  # need to pip install
 import time
 import DatabaseAccessor
