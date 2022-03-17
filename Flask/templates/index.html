@@ -3,6 +3,7 @@
     <head>
             <title>{{ title }}</title>
         <link rel="stylesheet" href="/static/css/main.css" />
+        <script src="/static/js/google_api.js"></script>
     </head>
 <body>
     <p> {{ weather.feels_like }}</p>
@@ -10,5 +11,12 @@
     <figure class="image is-50x50">
         <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
     </figure>
+    
+    <p>My Google Maps Demo</p>
+    <div id="map"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key='ihave'&callback=initMap&v=weekly"
+      async
+    ></script>
 </body>
 </html>

@@ -1,7 +1,5 @@
-from flask import Flask, render_template, url_for
-from flask_sqlalchemy import SQLAlchemy 
+from flask import Flask, render_template
 import requests 
-import time
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
