@@ -1,22 +1,42 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-    <head>
-            <title>{{ title }}</title>
-        <link rel="stylesheet" href="/static/css/main.css" />
-        <script src="/static/js/google_api.js"></script>
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/google_api.js"></script>
+</head>
 <body>
-    <p> {{ weather.feels_like }}</p>
-    <p> {{ weather.description }}</p>
+<div class="navheader">
+          <header>
+              
+                <nav>
+                    <div class="logo">
+                    <img src="Dublin_Bikes1.jpeg" alt="dublin bikes logo">
+                    </div>
+                </nav>
+          </header>
+        </div>
+
+   <div class="mapDisplay">
+       <div id="map">
+        <script
+      src="https://maps.googleapis.com/maps/api/js?key='ihave'&callback=initMap&v=weekly"
+      async>
+        </script>
+        </div>
+        </div>
+
+    
+    <div class="graphWeather">
+    <h3> {{ weather.feels_like }} </h3>
+    <h3> {{ weather.description }} </h3>
     <figure class="image is-50x50">
         <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
     </figure>
-    
-    <p>My Google Maps Demo</p>
-    <div id="map"></div>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key='ihave'&callback=initMap&v=weekly"
-      async
-    ></script>
-</body>
+    </div>
+    <footer>
+    </footer>
+    </body>
 </html>
