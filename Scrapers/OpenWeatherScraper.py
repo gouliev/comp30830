@@ -36,7 +36,7 @@ da = DatabaseAccessor
 da.create_weather_table()
 while True:  # infinite loop
     start_time = time.time()
-    time.sleep(3600.0 - ((time.time() - start_time) % 3600.0))
+    time.sleep(900.0 - ((time.time() - start_time) % 900.0))
 
     weather = get_weather(api_key, lat, long)  # access the dictionary
     da.push_to_weather(weather)
