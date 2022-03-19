@@ -1,9 +1,76 @@
-p { color: red} 
+* {
+    margin: 0;
+}
+.navheader {
+    width: 100%;
+    background-color: #274D74;
+    position: static;
+    text-align: right;
+    overflow: hidden;
+   
+}
+.logo {
+    float: left; 
+}
 
-/* Set the size of the div element that contains the map */
+
 #map {
     height: 400px;
     /* The height is 400 pixels */
     width: 100%;
     /* The width is the width of the web page */
-  }
+}
+
+body {
+    font-family: 'Helvetica';
+    background-color: white;
+}
+
+nav ul li{ 
+    font-family: 'Helvetica-bold';
+    display: inline;
+    padding: 3vh;
+    line-height: 20vh;
+    font-size: clamp(2vh, 10vh);
+    padding: 7.5vh;
+}
+
+h1 {
+    line-height: 10vh;
+}
+
+h2 {
+    text-align: center;
+    line-height: 10vh;
+}
+
+h3 {
+    line-height: 10vh;
+    padding: 7.5vh;
+}
+
+.mapDisplay {
+    margin: 5vh;
+    padding: 5vh;
+    background-color: #e5d9ab;
+    font-size: clamp(3vh, 3vw, 6vh);
+}
+.graphWeather {
+    margin: 5vh;
+    padding:5vh;
+    height: 50vh;
+    line-height: 5vh;
+    background-color: #e5d9ab;
+    font-size: clamp(3vh, 3vw, 6vh);
+    border-radius: 15px;
+    text-align: center;
+}
+
+footer {
+    width: 100%;
+    background-color: #274D74;
+    position: absolute;
+    text-align: center;
+    height: 30vh;
+    margin: 0vh;
+}
