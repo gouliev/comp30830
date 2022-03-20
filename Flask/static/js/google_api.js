@@ -1,17 +1,3 @@
-const url = 'https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=f9e09d85362311d1646d868797cbc7100ded0c8d'
-async function getBikeData(){
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log("Station number: " + data[0].number);
-    console.log("Station name: " + data[0].name);
-    console.log("Station lat: " + data[0].position.lat);
-    console.log("Station lng: " + data[0].position.lng);
-    console.log("Bike stands available for returns: " + data[0].available_bike_stands);
-    console.log("Number of bikes available: " + data[0].available_bikes);
-    console.log("Number of bike stands: " + data[0].bike_stands);
-} 
-getBikeData()
-
 // Initialize and add the map
 function initMap() {
     // The location of Dublin
@@ -23,67 +9,62 @@ function initMap() {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    var markers = [
-        {
-            //42 SMITHFIELD NORTH 53.349562 -6.278198
-            coords:{lat:53.349562,lng:-6.278198},
-            content: '<h1> 42 SMITHFIELD NORTH </h1>'
-        },
-        {
-            //30 PARNELL SQUARE NORTH 53.353462 -6.265305
-            coords:{lat:53.353462,lng:-6.265305},
-            content: '<h1> 30 PARNELL SQUARE NORTH </h1>'
-        },
-        {
-             //54 CLONMEL STREET 53.336021 -6.26298
-            coords:{lat:53.336021,lng:-6.26298},
-            content: '<h1> 54 CLONMEL STREET </h1>'
-        }
-    ];
+    const url = 'https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=f9e09d85362311d1646d868797cbc7100ded0c8d'
+    async function getBikeData(){
+        const response = await fetch(url);
+        var bikeData = await response.json();
+        test(bikeData);
+    }
+    getBikeData()
 
     //loop through info
-    for (var i = 0;i< markers.length;i++){
-        addMarker(markers[i]);
+    function test(bikeData){
+    for (let i = 0; i<=bikeData.length; i++){
+        addMarker(bikeData[i]);
+    }
     }
     
     //make map markers
-    function addMarker(props){
+    function addMarker(bikeData){
         var marker = new google.maps.Marker({
-            position:props.coords,
+            position: {lat:bikeData.position.lat,lng:bikeData.position.lng},
             map:map,
             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
         });
         
-        if(props.content)
         var infoWindow = new google.maps.InfoWindow({
-            content:props.content
+            content: '<h1>' + String(bikeData.name) + '</h1>' + '<br>' + 
+            '<p>' + 'Available bikes: ' + String(bikeData.available_bikes) + '</p>' + '</br>' + 
+            '<p>' + 'Available bike stands: ' + String(bikeData.available_bike_stands) + '</p>' + '</br>' +
+            '<p>' + 'Is open: ' + String(bikeData.status) + '</p>' + '</br>' +
+            '<p>' + 'Is card accepted: ' + String(bikeData.banking) + '</p>' + '</br>' +
+            '<button onclick="myFunction()">Find route</button>'
+
         });
     
         marker.addListener('click', function(){
-            infoWindow.open(map, marker);
+            infoWindow.open(map, marker); 
         });
     }
+
     // gelocation for user
-    const findUserLocation = () => {
+   const findUserLocation = () => {
         const status = document.querySelector('.status');
         const success = (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            console.log(latitude + ' ' + longitude)
-        
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            new google.maps.Marker({
+                position: {lat: latitude, lng: longitude},
+                map:map,
+                title: "You",
+            });
         }
         const error = () => {
-            status.textContent = 'error'
+            status.textContent = 'error';
         }
-        navigator.geolocation.getCurrentPosition(success, error);  
-        
-        new google.maps.Marker({
-            position: {lat: latitude, lng: longitude},
-            map:map,
-            title: "You",
-        });
-    }   
-findUserLocation()
+        navigator.geolocation.getCurrentPosition(success, error);     
+    }
+    findUserLocation()
 
     /*
     var changeColor = function(obj){
@@ -97,9 +78,9 @@ findUserLocation()
         }
       };*/
 
+
 /*
-// from user location to selected area
-    
+// from user location to selected area    
     //directions service and directions renderer and bind to map
     var directionsService = new google.maps.DirectionsService();
     var DirectionsDisplay = new google.maps.DirectionsRenderer();
@@ -108,10 +89,10 @@ findUserLocation()
     function route(){
     //request
         var request = {
-            origin: document.getElementById("").value,
+            origin: findUserLocation(position),
             destination: document.getElementById("").value,
             travelMode: google.maps.TravelMode.WALKING,
-            unitSystem: google.maps.UnitSystem.METRIC
+            unitSystem: google.maps.UnitSystem.METRIC,
         }
     //pass in request
     directionsService.route(request, (result,status) => {
@@ -129,5 +110,6 @@ findUserLocation()
         }
     });
     }*/
+    
 }
 
