@@ -9,6 +9,7 @@ function initMap() {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
+    //json data for jcd bikes
     const url = 'https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=f9e09d85362311d1646d868797cbc7100ded0c8d'
     async function getBikeData(){
         const response = await fetch(url);
@@ -19,33 +20,48 @@ function initMap() {
 
     //loop through info
     function test(bikeData){
-    for (let i = 0; i<=bikeData.length; i++){
+    for (let i = 0; i<bikeData.length; i++){
         addMarker(bikeData[i]);
     }
     }
     
-    //make map markers
+    //make map markers depending upon proportion of bikes left
     function addMarker(bikeData){
+        var bikeIconSelect = bikeData.available_bikes / bikeData.bike_stands;
+        if (bikeIconSelect>=.4){
+            bike_icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+        } else if (bikeIconSelect>.2 && bikeIconSelect<.4){
+            bike_icon = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+        } else {
+            bike_icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+        }
+
+        //Makes markers with coords from bike.data
         var marker = new google.maps.Marker({
             position: {lat:bikeData.position.lat,lng:bikeData.position.lng},
             map:map,
-            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            icon: bike_icon
         });
         
+        //creates markers with info box with information
         var infoWindow = new google.maps.InfoWindow({
             content: '<h1>' + String(bikeData.name) + '</h1>' + '<br>' + 
             '<p>' + 'Available bikes: ' + String(bikeData.available_bikes) + '</p>' + '</br>' + 
             '<p>' + 'Available bike stands: ' + String(bikeData.available_bike_stands) + '</p>' + '</br>' +
             '<p>' + 'Is open: ' + String(bikeData.status) + '</p>' + '</br>' +
             '<p>' + 'Is card accepted: ' + String(bikeData.banking) + '</p>' + '</br>' +
-            '<button onclick="myFunction()">Find route</button>'
-
+            '<button onclick="routeFunction()">' + 'Click me' + '</button>' +
+            '<p id="demo">' + '</p>'
         });
-    
+
+        
+        //makes the info box if you click the box
         marker.addListener('click', function(){
             infoWindow.open(map, marker); 
         });
+        
     }
+
 
     // gelocation for user
    const findUserLocation = () => {
@@ -56,7 +72,8 @@ function initMap() {
             new google.maps.Marker({
                 position: {lat: latitude, lng: longitude},
                 map:map,
-                title: "You",
+                title: "Your current location",
+                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
             });
         }
         const error = () => {
@@ -66,50 +83,33 @@ function initMap() {
     }
     findUserLocation()
 
-    /*
-    var changeColor = function(obj){
-
-        if(obj.value < 6){
-          obj.style.backgroundColor = 'green';
-        } else if(obj.value >= 6 && obj.value <= 9){
-          obj.style.backgroundColor = 'orange';
-        } else if(obj.value > 9){
-          obj.style.backgroundColor = 'red';
-        }
-      };*/
-
-
-/*
-// from user location to selected area    
-    //directions service and directions renderer and bind to map
+    function routeFunction(){
+    // from user location to selected area    
+    //directions service and directions renderer and bind to map        
     var directionsService = new google.maps.DirectionsService();
-    var DirectionsDisplay = new google.maps.DirectionsRenderer();
-    DirectionsDisplay.setMap(map)
-
-    function route(){
-    //request
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+    
+        function calcRoute(){
+        //request
         var request = {
-            origin: findUserLocation(position),
-            destination: document.getElementById("").value,
+            origin: {lat: 53.3493, lng: -6.2607},//function marker poisition on click
+            destination: {lat: 53.3607, lng: -6.2512},//function find user location position
             travelMode: google.maps.TravelMode.WALKING,
             unitSystem: google.maps.UnitSystem.METRIC,
         }
-    //pass in request
-    directionsService.route(request, (result,status) => {
-        if status == google.maps.DirectionsStatus.Ok) {
-            //distance and time
-            const output = document.querySelector('#output');
-            output.innerHTML = "<div class='alert-info'>From: " + document.getElementById("").value + ".<br />To: " + document.getElementById("").value + ".<br />Walking distance " + result.route[0].legs[0].distance.text + ".<br />Duration" + result.route[0].legs[0].duration.text + ". </div";
-            //disply route
-            DirectionsDisplay.setDirections(result);
-        } else {
-            //delete route
-            DirectionsDisplay.setDirections({routes:[]});
-            //error message
-            output.innerHTML = "<div class = 'alert-danger'> Could not retrieve walking distance. </div>";
+        //pass in request
+        directionsService.route(request, (result,status) => {
+            if (status == google.maps.DirectionsStatus.Ok) {
+                //disply route
+                DirectionsDisplay.setDirections(result);
+            } else {
+                //error message
+                output.innerHTML = "<div class = 'alert-danger'> Could not retrieve walking distance. </div>";
+                
+            }
+        });
         }
-    });
-    }*/
-    
-}
-
+        calcRoute()
+    }
+    }
