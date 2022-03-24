@@ -24,6 +24,10 @@ function initMap() {
         addMarker(bikeData[i]);
     }
     }
+
+    function myFunction() {
+        document.getElementById("demo").innerHTML = "Hello World";
+    }
     
     //make map markers depending upon proportion of bikes left
     function addMarker(bikeData){
@@ -50,7 +54,7 @@ function initMap() {
             '<p>' + 'Available bike stands: ' + String(bikeData.available_bike_stands) + '</p>' + '</br>' +
             '<p>' + 'Is open: ' + String(bikeData.status) + '</p>' + '</br>' +
             '<p>' + 'Is card accepted: ' + String(bikeData.banking) + '</p>' + '</br>' +
-            '<button onclick="routeFunction()">' + 'Click me' + '</button>' +
+            '<button onclick="myFunction">' + 'Click me' + '</button>' +
             '<p id="demo">' + '</p>'
         });
 
@@ -100,16 +104,18 @@ function initMap() {
         }
         //pass in request
         directionsService.route(request, (result,status) => {
-            if (status == google.maps.DirectionsStatus.Ok) {
+            if (status == google.maps.DirectionsStatus.OK) {
                 //disply route
-                DirectionsDisplay.setDirections(result);
+                directionsDisplay.setDirections(result);
             } else {
                 //error message
                 output.innerHTML = "<div class = 'alert-danger'> Could not retrieve walking distance. </div>";
                 
             }
         });
+
         }
         calcRoute()
     }
+    routeFunction()
     }
