@@ -8,7 +8,7 @@ app.config['DEBUG'] = True
 def index():
     lat = "53.3498" 
     long = "-6.2603"
-    api_key = "66e50250e7bb61902cd01ad6cc2c4c4f"
+    api_key = "57c745b64650ac91012e9b0215ac7b1e"
     url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid={api_key}&units=metric"
     response = requests.get(url).json()
 
