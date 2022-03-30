@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <title></title>
-    <link rel="stylesheet" href="static/css/main.css" />
-    <script src="static/js/google_api.js"></script>
-  </head>
-  <body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <link rel="stylesheet" href="/static/css/main.css" />
+        <script src="/static/js/google_api.js"></script>
+    </head>
+<body>
     <div class="navheader">
-      <header>
-        <nav>
-          <div class="logo">
-            <img src="Dublin_Bikes1.jpeg" alt="dublin bikes logo" />
-          </div>
-        </nav>
-      </header>
+        <header>
+          <nav>
+            <div class="logo">
+              <img src="/static/img/Dublin_Bikes1.jpeg" alt="dublin bikes logo" />
+            </div>
+          </nav>
+        </header>
     </div>
-
     <div class="mapDisplay">
-      <div id="map">
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMpvI9EwGuPdNGh1qty-cTih82KjopBcs&callback=initMap&v=weekly"
-          async
-        ></script>
-      </div>
+        <div style="display: none">
+            <input
+              id="origin-input"
+              class="controls"
+              type="text"
+              placeholder="Enter an origin location"
+            />
+      
+            <input
+              id="destination-input"
+              class="controls"
+              type="text"
+              placeholder="Enter a destination location"
+            />
+      
+            <div id="mode-selector" class="controls">
+              <input
+                type="radio"
+                name="type"
+                id="changemode-walking"
+                checked="checked"
+              />
+              <label for="changemode-walking">Cycling</label>
+      
+              <input type="radio" name="type" id="changemode-transit" />
+              <label for="changemode-transit">Walking</label>
+            </div>
+          </div>    
+        <div id="map">
+          <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRG-Yx0dQJJnIs0vSebezt8NywUW06Ue4&callback=initMap&v=weekly&libraries=places&v=weekly"
+            async
+          ></script>
+        </div>
     </div>
-    alertTimeout("Splash 1.0<br />This is a splash screen<br />Page is
-    loading!",5000)
+    <!-- alertTimeout("Splash 1.0<br />This is a splash screen<br />Page is
+    loading!",5000) -->
     <div class="graphWeather">
       <h3>{{ weather.feels_like }}</h3>
       <h3>{{ weather.description }}</h3>
@@ -39,5 +67,5 @@
       </figure>
     </div>
     <footer></footer>
-  </body>
+</body>
 </html>
