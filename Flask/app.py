@@ -20,5 +20,5 @@ def index():
     print(weather)
     return render_template('index.html', weather=weather)
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
