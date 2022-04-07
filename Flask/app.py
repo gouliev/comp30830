@@ -6,9 +6,11 @@ app.config['DEBUG'] = True
 
 @app.route('/')
 def index():
+
+
     lat = "53.3498" 
     long = "-6.2603"
-    api_key = "57c745b64650ac91012e9b0215ac7b1e"
+    api_key = "66e50250e7bb61902cd01ad6cc2c4c4f"
     url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid={api_key}&units=metric"
     response = requests.get(url).json()
 
@@ -18,7 +20,9 @@ def index():
         'icon': response['weather'][0]['icon']
     }
     print(weather)
+
     return render_template('index.html', weather=weather)
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+
+if __name__ == '__main__':
+    app.run()

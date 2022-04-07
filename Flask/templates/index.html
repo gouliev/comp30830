@@ -11,13 +11,24 @@
 <body>
     <div class="navheader">
         <header>
+          <!-- navigation bar with our logo, and weather data -->
           <nav>
             <div class="logo">
               <img src="/static/img/Dublin_Bikes1.jpeg" alt="dublin bikes logo" />
             </div>
+            <div class="graphWeather">
+              <p>{{ weather.feels_like }}c</p>
+            </div>
+            <div class="image">
+              <img
+                src="http://openweathermap.org/img/w/{{ weather.icon }}.png"
+                alt="Image"
+              />
+            </div>
           </nav>
         </header>
     </div>
+    <!-- https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-directions -->
     <div class="mapDisplay">
         <div style="display: none">
             <input
@@ -41,32 +52,18 @@
                 id="changemode-walking"
                 checked="checked"
               />
-              <label for="changemode-walking">Cycling</label>
-      
-              <input type="radio" name="type" id="changemode-transit" />
-              <label for="changemode-transit">Walking</label>
+              
             </div>
           </div>    
         <div id="map">
           <script
-            src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly&libraries=places&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=!!!!!!!!&callback=initMap&v=weekly&libraries=places&v=weekly"
             
             async
           ></script>
         </div>
     </div>
-    <!-- alertTimeout("Splash 1.0<br />This is a splash screen<br />Page is
-    loading!",5000) -->
-    <div class="graphWeather">
-      <h3>{{ weather.feels_like }}</h3>
-      <h3>{{ weather.description }}</h3>
-      <figure class="image is-50x50">
-        <img
-          src="http://openweathermap.org/img/w/{{ weather.icon }}.png"
-          alt="Image"
-        />
-      </figure>
-    </div>
+    
     <footer></footer>
 </body>
 </html>

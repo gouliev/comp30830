@@ -12,22 +12,25 @@
 .logo {
     float: left; 
 }
-
+.image{
+    float: right;
+    right: 10px;
+}
 
 #map {
-    height: 400px;
+    height: 450px;
     /* The height is 400 pixels */
     width: 100%;
     /* The width is the width of the web page */
 }
 
 body {
-    font-family: 'Helvetica';
+    font-family: 'Roboto';
     background-color: white;
 }
 
 nav ul li{ 
-    font-family: 'Helvetica-bold';
+    font-family: 'Roboto-bold';
     display: inline;
     padding: 3vh;
     line-height: 20vh;
@@ -49,13 +52,66 @@ h3 {
     padding: 7.5vh;
 }
 
+p {
+    color: white;
+    right: 10px;
+    padding: 5px;
+}
+
 .mapDisplay {
     margin: 5vh;
     padding: 5vh;
     background-color: #e5d9ab;
     font-size: clamp(3vh, 3vw, 6vh);
 }
-.graphWeather {
+
+/*Google api code-transformative*/
+#origin-input,
+#destination-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 200px;
+  border-style: inset;
+  border-color: #e5d9ab;
+  border-width: medium;
+
+}
+
+/*Google api code-transformative*/
+#mode-selector {
+  color: #fff;
+  background-color: white;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  border-style: inset;
+  border-color: #e5d9ab;
+  height: 18px;
+  border-width: medium;
+}
+
+/*Google api code-transformative*/
+#mode-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+  color: #808080;
+}
+
+/*from stack overflow-removes term of use from map*/
+.gmnoprint a, .gmnoprint span {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+
+/*
+.estimationCharts {
     margin: 5vh;
     padding:5vh;
     height: 50vh;
@@ -65,6 +121,7 @@ h3 {
     border-radius: 15px;
     text-align: center;
 }
+
 
 footer {
     width: 100%;
