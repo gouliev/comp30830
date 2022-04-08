@@ -73,7 +73,7 @@ def recent_stations(number):
     for row in rows:
         data.append(dict(row))
     print(data)
-    return jsonify(available_bikes=data)
+    return jsonify(bikes=data)
 
 
 
