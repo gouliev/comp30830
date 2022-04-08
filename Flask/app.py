@@ -1,9 +1,8 @@
 from flask import Flask, render_template
 import requests 
-from flask import  current_app as app
 import pickle
-import datetime
 import json
+import datetime
 
 
 app = Flask(__name__)
