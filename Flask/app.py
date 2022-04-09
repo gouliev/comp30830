@@ -1,8 +1,10 @@
-from flask import Flask, render_template
-import requests 
+from flask import Flask, render_template,jsonify
+import numpy
+import requests
 import pickle
-import json
 import datetime
+from sqlalchemy import create_engine
+from pandas._libs import json
 
 
 app = Flask(__name__)
@@ -14,6 +16,7 @@ DB = 'project14'
 USER = 'admin'
 PASSWORD = 'Project14!'
 ENGINE = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(USER, PASSWORD, URI, PORT, DB), echo=True)
+
 
 monday = pickle.load(open('./static/monday.pkl', 'rb'))
 tuesday = pickle.load(open("./static/tuesday.pkl", "rb"))
@@ -32,9 +35,10 @@ def get_db():
         db = g._database = connect_to_database()
     return db
 
+
 @app.route('/')
 def index():
-    lat = "53.3498" 
+    lat = "53.3498"
     long = "-6.2603"
     api_key = "66e50250e7bb61902cd01ad6cc2c4c4f"
     url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid={api_key}&units=metric"
@@ -49,9 +53,19 @@ def index():
     return render_template('index.html', weather=weather)
 
 
-# station route
+#db connection used code from class
+def connect_to_database():
+    return ENGINE
+
+# to return the database
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = connect_to_database()
+    return db
+
+# stations route
 @app.route("/stations")
-# @functools.lru_cache(maxsize=128)
 def get_stations():
     engine = get_db()
     station = []
@@ -68,28 +82,35 @@ def get_stations():
 def recent_stations(number):
     engine = get_db()
     data = []
-    rows = engine.execute("SELECT bikes, time(last_update ) as hour FROM availability where number={}  group by hour( last_update ) asc;".format(number))
-    #rows = engine.execute("SELECT bikes, dayname( last_update ) as day,hour( last_update ) as hours From availability where number={} group by dayname( last_update ),hours( last_update );".format(station_id))
+    rows = engine.execute("SELECT bikes, time(last_update) as hour FROM availability where number={}  group by hour(last_update) asc;".format(number))
     for row in rows:
         data.append(dict(row))
     print(data)
-    return jsonify(bikes=data)
+    return jsonify(data=data)
 
 
+# for charting bike info
+@app.route("/stations/<int:station_id>")
+def graph(station_id):
+    engine = get_db()
+    data = []
+    rows = engine.execute("SELECT bikes, hour(last_update ) as hour FROM  availability where number={}  group by hour( last_update ) asc;".format(station_id))
+    for row in rows:
+        data.append(dict(row))
+    print(data)
+    return jsonify(available_bikes=data)
 
 
-# prediction call JS route
+# setup prediction
 @app.route("/prediction", methods=['GET', 'POST'])
-def prediction_model():
-    import numpy as np
-
+def prediction():
     # evaluate JS selection
     data = request.args.get('post', 0, type=str)
     data = data.split()
-    d = datetime.datetime.strptime(date, "%Y-%m-%d")
+    selected_date = datetime.datetime.strptime(date, "%Y-%m-%d")
     date = d.strftime("%A")
     number = int(data[0])
-    d = datetime.datetime.strptime(time, "%H")
+    selected_date  = datetime.datetime.strptime(time, "%H")
     time = int(d.time)
     prediction_request = [[number, time, day]]
     if day == "Monday":
@@ -107,6 +128,8 @@ def prediction_model():
     if day == "Sunday":
         x = sunday.predict(prediction_request)
     print("Predicted Availability for this Station", int(x[0]))
+
+    # dump prediction data for use as requested
     prediction = [int(x[0])]
     return json.dumps(prediction)
 
