@@ -10,12 +10,12 @@ from pandas._libs import json
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-URI = 'bikes14backup.cgrqjxkmxcl9.eu-west-1.rds.amazonaws.com'
+URL = 'bikes14backup.cgrqjxkmxcl9.eu-west-1.rds.amazonaws.com' # changed URI to URL, it was mispelled
 PORT = '3306'
 DB = 'project14'
 USER = 'admin'
 PASSWORD = 'Project14!'
-ENGINE = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(USER, PASSWORD, URI, PORT, DB), echo=True)
+ENGINE = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(USER, PASSWORD, URL, PORT, DB), echo=True)
 
 
 monday = pickle.load(open('./static/monday.pkl', 'rb'))
