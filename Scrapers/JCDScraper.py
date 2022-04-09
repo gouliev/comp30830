@@ -1,4 +1,4 @@
-#!/bin/usr/python
+#!/usr/bin/python
 
 
 import requests  # need to pip install
