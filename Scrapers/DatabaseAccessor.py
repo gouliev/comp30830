@@ -1,10 +1,10 @@
-#!/bin/usr/python
-
-
+#!/usr/bin/python
 from sqlalchemy import create_engine
 import json
 
-URI = 'dbikes14.cumg3hfmqkkj.eu-west-1.rds.amazonaws.com'
+
+# establish DB connection parameters and connect using create_engine function from SQLAlchemy
+URI = 'dbikes14backup.cgrqjxkmxcl9.eu-west-1.rds.amazonaws.com'
 PORT = '3306'
 DB = 'project14'
 USER = 'admin'
@@ -12,6 +12,7 @@ PASSWORD = 'Project14!'
 ENGINE = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(USER, PASSWORD, URI, PORT, DB), echo=True)
 
 def create_availability_table():
+    #send SQL query to database to create table
     sql = """
     CREATE TABLE IF NOT EXISTS availability (
     number INTEGER, 
@@ -32,6 +33,7 @@ def create_availability_table():
         print(e)
 
 def push_row_to_db(data: dict):
+    #insert api data into table
     try:
         res = ENGINE.execute(
             f"INSERT INTO availability values('{data['number']}','{data['name']}','{data['status']}','{data['latitude']}','{data['longitude']}','{data['bikes']}','{data['stands']}','{data['banking']}','{data['last_update']}')")
@@ -79,6 +81,7 @@ def create_static_table():
         print(e)
 
 def populate_static_table():
+    #populate new table with installed file
     file = open('/Users/os/comp30830/Scrapers/dublin.json')
     stations = json.load(file)
     for station in stations:

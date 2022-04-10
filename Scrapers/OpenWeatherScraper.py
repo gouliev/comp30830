@@ -7,7 +7,6 @@ import DatabaseAccessor
 lat = "53.34399"  # lat and long of Dublin city
 long = "-6.26719"
 api_key = "e857655954f34ae188982244bbb23b21"
-unix = int(time.time()*1000)
 
 def get_weather(api_key, lat, long):
     url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid={api_key}&units=metric"  # all units metric #putting lat, long, and key into request
@@ -23,8 +22,8 @@ def get_weather(api_key, lat, long):
     wind_speed = response['wind']['speed']  # wind_speed = 'wind_speed' of dublin
     wind_speed = math.floor(wind_speed)
 
-    last_update = unix
-
+    last_update = int(time.time()*1000)
+    return {
     'temp': temp,
     'feels_like': feels_like,
     'wind_speed': wind_speed,
