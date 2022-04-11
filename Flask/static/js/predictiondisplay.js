@@ -1,6 +1,7 @@
 function updateChart (station, day) {
     var station = station; 
     var day = day; 
+    var availabilityPrediction;
     async function getData(station, day) {  
         var requestOptions = {
             method: 'GET',
@@ -18,6 +19,7 @@ function updateChart (station, day) {
         console.log(bikeAvailability);
         myChart.update
     })
+    console.log(bikeAvailability);
 }
 
 const data = {
