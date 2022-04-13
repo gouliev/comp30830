@@ -3,9 +3,7 @@ import numpy as np
 import requests
 import pickle
 from sqlalchemy import create_engine
-from pandas._libs import json
-import pandas as pd
-import os
+import json
 from flask_cors import CORS
 
 
