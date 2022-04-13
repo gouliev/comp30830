@@ -3,13 +3,15 @@ import numpy as np
 import requests
 import pickle
 from sqlalchemy import create_engine
-import json
+from pandas._libs import json
+import pandas as pd
+import os
 from flask_cors import CORS
 
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
 CORS(app)
+app.config['DEBUG'] = True
 
 URL = 'dbikes14backup.cgrqjxkmxcl9.eu-west-1.rds.amazonaws.com' # changed URI to URL, it was mispelled
 PORT = '3306'
@@ -36,11 +38,11 @@ def index():
     return render_template('index.html', weather=weather)
 
 
-
+#db connection used code from class
 def connect_to_database():
     return ENGINE
 
-# to return the database, code used from class
+# to return the database
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -71,7 +73,7 @@ def recent_stations(number):
     print(data)
     return jsonify(data=data)
 
-#
+
 @app.route("/prediction", methods=['GET'])
 def prediction():
     station_num = request.args.get('station_num')
