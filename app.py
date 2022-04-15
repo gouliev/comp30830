@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import numpy as np
 import requests
 import pickle
-import json
+from pandas._libs import json # prediction route could not turn numpy array to json so pandas libs was needed
 from flask_cors import CORS
 
 # imported CORS to bypass CORS policy that was preventing JS from accessing the API
