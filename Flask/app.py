@@ -43,7 +43,7 @@ def prediction():
 
     model = None
     # uses JS data to access relevant pickle file
-    with (open(f"comp30830/Flask/stations/{station_num}/{day}.pkl", "rb")) as openfile:
+    with (open(f"comp30830/Flask/static/stations/{station_num}/{day}.pkl", "rb")) as openfile:
         model = pickle.load(openfile)
         
     result = model.predict(times_feature)
@@ -52,4 +52,4 @@ def prediction():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host = '0.0.0.0', port=8080)
