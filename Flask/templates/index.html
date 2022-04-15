@@ -63,133 +63,185 @@
           ></script>
         </div>
     </div>
-    <div id ="requestPrediction">
-      <script src="../static/js/predictiondisplay.js"></script>
-      <form action="">
-        <select id="selectStation" name="Station">
-          <!-- hardcoded addresses as we needed the int values passed to the JS function-->
-          <option value="2">BLESSINGTON STREET</option>
-          <option value="3">BOLTON STREET</option>
-          <option value="4">GREEK STREET</option>
-          <option value="5">CHARLEMONT PLACE</option>
-          <option value="6">CHRISTCHURCH PLACE</option>
-          <option value="7">HIGH STREET</option>
-          <option value="8">CUSTOM HOUSE QUAY</option>
-          <option value="9">EXCHEQUER STREET</option>
-          <option value="10">DAME STREET</option>
-          <option value="11">EARLSFORT TERRACE</option>
-          <option value="12">ECCLES STREET</option>
-          <option value="13">FITZWILLIAM SQUARE WEST</option>
-          <option value="15">HARDWICKE STREET</option>
-          <option value="16">GEORGES QUAY</option>
-          <option value="17">GOLDEN LANE</option>
-          <option value="18">GRANTHAM STREET</option>
-          <option value="19">HERBERT PLACE</option>
-          <option value="21">LEINSTER STREET SOUTH</option>
-          <option value="22">TOWNSEND STREET</option>
-          <option value="23">CUSTOM HOUSE</option>
-          <option value="24">CATHAL BRUGHA STREET</option>
-          <option value="25">MERRION SQUARE EAST</option>
-          <option value="26">MERRION SQUARE WEST</option>
-          <option value="27">MOLESWORTH STREET</option>
-          <option value="28">MOUNTJOY SQUARE WEST</option>
-          <option value="29">ORMOND QUAY UPPER</option>
-          <option value="30">PARNELL SQUARE NORTH</option>
-          <option value="31">PARNELL STREET</option>
-          <option value="32">PEARSE STREET</option>
-          <option value="34">PORTOBELLO HARBOUR</option>
-          <option value="38">TALBOT STREET</option>
-          <option value="39">WILTON TERRACE</option>
-          <option value="40">JERVIS STREET</option>
-          <option value="41">HARCOURT TERRACE</option>
-          <option value="42">SMITHFIELD NORTH</option>
-          <option value="43">PORTOBELLO ROAD</option>
-          <option value="44">UPPER SHERRARD STREET</option>
-          <option value="45">DEVERELL PLACE</option>
-          <option value="47">HERBERT STREET</option>
-          <option value="48">EXCISE WALK</option>
-          <option value="49">GUILD STREET</option>
-          <option value="50">GEORGES LANE</option>
-          <option value="51">YORK STREET WEST</option>
-          <option value="52">YORK STREET EAST</option>
-          <option value="53">NEWMAN HOUSE</option>
-          <option value="54">CLONMEL STREET</option>
-          <option value="55">HATCH STREET</option>
-          <option value="56">MOUNT STREET LOWER</option>
-          <option value="57">GRATTAN STREET</option>
-          <option value="59">DENMARK STREET GREAT</option>
-          <option value="60">NORTH CIRCULAR ROAD</option>
-          <option value="61">HARDWICKE PLACE</option>
-          <option value="62">LIME STREET</option>
-          <option value="63">FENIAN STREET</option>
-          <option value="64">SANDWITH STREET</option>
-          <option value="65">CONVENTION CENTRE</option>
-          <option value="66">NEW CENTRAL BANK</option>
-          <option value="67">THE POINT</option>
-          <option value="68">HANOVER QUAY</option>
-          <option value="69">GRAND CANAL DOCK</option>
-          <option value="71">KEVIN STREET</option>
-          <option value="72">JOHN STREET WEST</option>
-          <option value="73">FRANCIS STREET</option>
-          <option value="74">OLIVER BOND STREET</option>
-          <option value="75">JAMES STREET</option>
-          <option value="76">MARKET STREET SOUTH</option>
-          <option value="77">WOLFE TONE STREET</option>
-          <option value="78">MATER HOSPITAL</option>
-          <option value="79">ECCLES STREET EAST</option>
-          <option value="80">ST JAMES HOSPITAL (LUAS)</option>
-          <option value="82">MOUNT BROWN</option>
-          <option value="83">EMMET ROAD</option>
-          <option value="84">BROOKFIELD ROAD</option>
-          <option value="85">ROTHE ABBEY</option>
-          <option value="86">PARKGATE STREET</option>
-          <option value="88">BLACKHALL PLACE</option>
-          <option value="89">FITZWILLIAM SQUARE EAST</option>
-          <option value="90">BENSON STREET</option>
-          <option value="91">SOUTH DOCK ROAD</option>
-          <option value="92">HEUSTON BRIDGE (NORTH)</option>
-          <option value="93">HEUSTON STATION (CENTRAL)</option>
-          <option value="94">HEUSTON STATION (CAR PARK)</option>
-          <option value="95">ROYAL HOSPITAL</option>
-          <option value="96">KILMAINHAM LANE</option>
-          <option value="97">KILMAINHAM GAOL</option>
-          <option value="98">FREDERICK STREET SOUTH</option>
-          <option value="99">CITY QUAY</option>
-          <option value="100">HEUSTON BRIDGE (SOUTH)</option>
-          <option value="101">KING STREET NORTH</option>
-          <option value="102">WESTERN WAY</option>
-          <option value="103">GRANGEGORMAN LOWER (SOUTH)</option>
-          <option value="104">GRANGEGORMAN LOWER (CENTRAL)</option>
-          <option value="105">GRANGEGORMAN LOWER (NORTH)</option>
-          <option value="106">RATHDOWN ROAD</option>
-          <option value="107">CHARLEVILLE ROAD</option>
-          <option value="108">AVONDALE ROAD</option>
-          <option value="109">BUCKINGHAM STREET LOWER</option>
-          <option value="110">PHIBSBOROUGH ROAD</option>
-          <option value="111">MOUNTJOY SQUARE EAST</option>
-          <option value="113">MERRION SQUARE SOUTH</option>
-          <option value="114">WILTON TERRACE (PARK)</option>
-          <option value="115">KILLARNEY STREET</option>
-          <option value="116">BROADSTONE</option>
-          <option value="117">HANOVER QUAY EAST</option>
-        </select>
-        <select id="selectDay" name="Day">
-          <option value="monday">Monday</option>
-          <option value="tuesday">Tuesday</option>
-          <option value="wednesday">Wednesday</option>
-          <option value="thursday">Thursday</option>
-          <option value="friday">Friday</option>
-          <option value="saturday">Saturday</option>
-          <option value="sunday">Sunday</option>
-        </select>
-        <button id="getForecast" onclick="updateChart(document.getElementById('selectStation').value, document.getElementById('selectDay').value)"> Generate Forecast </button>
-      </form>
-      <div class="chartCard">
-        <div class="chartBox">
-          <canvas id="myChart"></canvas>
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        </div>    
+    <div class = "displayChart">
+      <div class = "chartBody">
+            <form action="">
+              <select id="selectStation" name="Station">
+              <!-- hardcoded addresses as we needed the int values passed to the JS function
+              we did this because the Data Model is trained on station number as opposed to address-->
+              <option value="2">BLESSINGTON STREET</option>
+              <option value="3">BOLTON STREET</option>
+              <option value="4">GREEK STREET</option>
+              <option value="5">CHARLEMONT PLACE</option>
+              <option value="6">CHRISTCHURCH PLACE</option>
+              <option value="7">HIGH STREET</option>
+              <option value="8">CUSTOM HOUSE QUAY</option>
+              <option value="9">EXCHEQUER STREET</option>
+              <option value="10">DAME STREET</option>
+              <option value="11">EARLSFORT TERRACE</option>
+              <option value="12">ECCLES STREET</option>
+              <option value="13">FITZWILLIAM SQUARE WEST</option>
+              <option value="15">HARDWICKE STREET</option>
+              <option value="16">GEORGES QUAY</option>
+              <option value="17">GOLDEN LANE</option>
+              <option value="18">GRANTHAM STREET</option>
+              <option value="19">HERBERT PLACE</option>
+              <option value="21">LEINSTER STREET SOUTH</option>
+              <option value="22">TOWNSEND STREET</option>
+              <option value="23">CUSTOM HOUSE</option>
+              <option value="24">CATHAL BRUGHA STREET</option>
+              <option value="25">MERRION SQUARE EAST</option>
+              <option value="26">MERRION SQUARE WEST</option>
+              <option value="27">MOLESWORTH STREET</option>
+              <option value="28">MOUNTJOY SQUARE WEST</option>
+              <option value="29">ORMOND QUAY UPPER</option>
+              <option value="30">PARNELL SQUARE NORTH</option>
+              <option value="31">PARNELL STREET</option>
+              <option value="32">PEARSE STREET</option>
+              <option value="34">PORTOBELLO HARBOUR</option>
+              <option value="38">TALBOT STREET</option>
+              <option value="39">WILTON TERRACE</option>
+              <option value="40">JERVIS STREET</option>
+              <option value="41">HARCOURT TERRACE</option>
+              <option value="42">SMITHFIELD NORTH</option>
+              <option value="43">PORTOBELLO ROAD</option>
+              <option value="44">UPPER SHERRARD STREET</option>
+              <option value="45">DEVERELL PLACE</option>
+              <option value="47">HERBERT STREET</option>
+              <option value="48">EXCISE WALK</option>
+              <option value="49">GUILD STREET</option>
+              <option value="50">GEORGES LANE</option>
+              <option value="51">YORK STREET WEST</option>
+              <option value="52">YORK STREET EAST</option>
+              <option value="53">NEWMAN HOUSE</option>
+              <option value="54">CLONMEL STREET</option>
+              <option value="55">HATCH STREET</option>
+              <option value="56">MOUNT STREET LOWER</option>
+              <option value="57">GRATTAN STREET</option>
+              <option value="59">DENMARK STREET GREAT</option>
+              <option value="60">NORTH CIRCULAR ROAD</option>
+              <option value="61">HARDWICKE PLACE</option>
+              <option value="62">LIME STREET</option>
+              <option value="63">FENIAN STREET</option>
+              <option value="64">SANDWITH STREET</option>
+              <option value="65">CONVENTION CENTRE</option>
+              <option value="66">NEW CENTRAL BANK</option>
+              <option value="67">THE POINT</option>
+              <option value="68">HANOVER QUAY</option>
+              <option value="69">GRAND CANAL DOCK</option>
+              <option value="71">KEVIN STREET</option>
+              <option value="72">JOHN STREET WEST</option>
+              <option value="73">FRANCIS STREET</option>
+              <option value="74">OLIVER BOND STREET</option>
+              <option value="75">JAMES STREET</option>
+              <option value="76">MARKET STREET SOUTH</option>
+              <option value="77">WOLFE TONE STREET</option>
+              <option value="78">MATER HOSPITAL</option>
+              <option value="79">ECCLES STREET EAST</option>
+              <option value="80">ST JAMES HOSPITAL (LUAS)</option>
+              <option value="82">MOUNT BROWN</option>
+              <option value="83">EMMET ROAD</option>
+              <option value="84">BROOKFIELD ROAD</option>
+              <option value="85">ROTHE ABBEY</option>
+              <option value="86">PARKGATE STREET</option>
+              <option value="88">BLACKHALL PLACE</option>
+              <option value="89">FITZWILLIAM SQUARE EAST</option>
+              <option value="90">BENSON STREET</option>
+              <option value="91">SOUTH DOCK ROAD</option>
+              <option value="92">HEUSTON BRIDGE (NORTH)</option>
+              <option value="93">HEUSTON STATION (CENTRAL)</option>
+              <option value="94">HEUSTON STATION (CAR PARK)</option>
+              <option value="95">ROYAL HOSPITAL</option>
+              <option value="96">KILMAINHAM LANE</option>
+              <option value="97">KILMAINHAM GAOL</option>
+              <option value="98">FREDERICK STREET SOUTH</option>
+              <option value="99">CITY QUAY</option>
+              <option value="100">HEUSTON BRIDGE (SOUTH)</option>
+              <option value="101">KING STREET NORTH</option>
+              <option value="102">WESTERN WAY</option>
+              <option value="103">GRANGEGORMAN LOWER (SOUTH)</option>
+              <option value="104">GRANGEGORMAN LOWER (CENTRAL)</option>
+              <option value="105">GRANGEGORMAN LOWER (NORTH)</option>
+              <option value="106">RATHDOWN ROAD</option>
+              <option value="107">CHARLEVILLE ROAD</option>
+              <option value="108">AVONDALE ROAD</option>
+              <option value="109">BUCKINGHAM STREET LOWER</option>
+              <option value="110">PHIBSBOROUGH ROAD</option>
+              <option value="111">MOUNTJOY SQUARE EAST</option>
+              <option value="113">MERRION SQUARE SOUTH</option>
+              <option value="114">WILTON TERRACE (PARK)</option>
+              <option value="115">KILLARNEY STREET</option>
+              <option value="116">BROADSTONE</option>
+              <option value="117">HANOVER QUAY EAST</option>
+              </select>
+              <select id="selectDay" name="Day">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+              </select>
+              <button id="getForecast" type="button" onclick="getData(document.getElementById('selectStation').value, document.getElementById('selectDay').value)"> Generate Forecast </button>
+            </form>
+           </div>
+           <div class = "chartBody">
+             <canvas id="myChart"></canvas>
+           </div>
       </div>
-    <footer></footer>
+      <!-- imported chartJS to display the JSON data parsed from the Flask API
+      chartJS felt like the natural choice as it provided a dynamic and robust solution to what
+      would be an otherwise finnicky implementation. chartJS automatically adjusts the display
+      according to window size and offers seemless transition from one chart to another.
+      Below we implemented chartJS via http as it would save us from using up additional EC2 memory-->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+       <script>
+         // access API through XML and onclick HTML event, data is passed to API to return the relevant station as requested
+         function getData(station, day){
+          const xml= new XMLHttpRequest(),
+          url = "http://34.243.114.11:8080/prediction?day=" + day + "&station_num=" + station;
+          xml.onreadystatechange = function() {
+              if (xml.readyState == 4  && xml.status == 200) {
+                  console.log(xml.responseText);
+                  availabilityPrediction = JSON.parse(xml.responseText);
+                  bikeAvailability = availabilityPrediction.prediction;
+                  console.log(bikeAvailability);
+                  updateChart(bikeAvailability);
+              }
+          };
+          xml.open('get', url, true);
+          xml.send();
+          return false; //prevents page refresh, which would have reset graph to default
+        }
+        // This block of code calls chartJS and executes the construction of a graph based on the API data
+        // used the following resources to help me with the implementation
+        /*
+        www.youtube.com/watch?v=4jfcxxTT8H0
+        https://www.chartjs3.com/docs/chart/getting-started/
+        https://www.youtube.com/watch?v=E2hytuQvLlE
+        */
+         var ctx = document.getElementById('myChart').getContext("2d"); //establishes 2D chart and calls the myChart html canvas
+         var chart = new Chart(ctx, {
+           type: 'line',
+           data: { // hardcoded labels for improved readability as the first JSON array lacks explicit am/pm distinguishment
+             labels: ['12am','1am','2am','3am','4am','5am','6am','7am','8am','9am','10am','11am','12pm',
+             '1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm'], //displayed on x-axis
+             datasets: [{
+               label: "Predicted Bike Availability for Selected Day", //chart name
+               backgroundColor: '#997864',
+               borderColor: '#274D74',
+               data: [5.111326501, 6.5615597134, 6.7888704074, 6.6102458771, 6.454099403, 8.0681387461, 4.5704701948, 2.8982756104, 0.7553911938,
+                2.0706191864, 3.2018974193, 2.3369496679, 4.4825585712, 5.988819029, 5.4478458638, 5.201649855, 3.1244379331,
+               5.0033346312, 8.1887527833, 9.2426072175, 10.6333121267, 11.8630463266, 13.1724922712, 13.2099811934], //defaults to station 2 on a Monday, y-axis data
+             }]
+           },
+           options: {}
+         });
+         function updateChart(prediction) { //XML function from onclick event requests the chart to update to the required station/day
+           chart.data.datasets[0].data = prediction
+           chart.update();
+         }
+       </script>
   </body>
 </html>
