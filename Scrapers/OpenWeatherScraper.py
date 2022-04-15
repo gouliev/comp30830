@@ -6,7 +6,7 @@ import time
 import DatabaseAccessor
 lat = "53.34399"  # lat and long of Dublin city
 long = "-6.26719"
-api_key = "e857655954f34ae188982244bbb23b21"
+api_key = "57c745b64650ac91012e9b0215ac7b1e"
 
 def get_weather(api_key, lat, long):
     url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid={api_key}&units=metric"  # all units metric #putting lat, long, and key into request

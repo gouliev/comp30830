@@ -18,7 +18,7 @@
 }
 
 #map {
-    height: 450px;
+    height: 75vh;
     /* The height is 400 pixels */
     width: 100%;
     /* The width is the width of the web page */
@@ -57,12 +57,15 @@ p {
     right: 10px;
     padding: 5px;
 }
-
+/* the card on which the Google Maps display sits */
 .mapDisplay {
-    margin: 5vh;
-    padding: 5vh;
+    margin: 2vh;
+    padding: 1.5vh;
     background-color: #e5d9ab;
     font-size: clamp(3vh, 3vw, 6vh);
+    float: left;
+    width: 56%;
+    border-radius: 15px;
 }
 
 /*Google api code-transformative*/
@@ -110,24 +113,18 @@ p {
     background:none !important;
 }
 
-/*
-.estimationCharts {
-    margin: 5vh;
-    padding:5vh;
-    height: 50vh;
-    line-height: 5vh;
+/* displayChart defines the card on which the generated myChart sits*/ 
+.displayChart {
+    margin: 2vh;
+    padding: 1.5vh;
     background-color: #e5d9ab;
-    font-size: clamp(3vh, 3vw, 6vh);
     border-radius: 15px;
     text-align: center;
+    float: right; 
+    width: 35%;
 }
 
-
-footer {
-    width: 100%;
-    background-color: #274D74;
-    position: absolute;
-    text-align: center;
-    height: 30vh;
-    margin: 0vh;
+#myChart {
+    background-color: #FAF9F6;
+    border-radius: 5px;
 }
