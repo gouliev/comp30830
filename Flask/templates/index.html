@@ -57,7 +57,7 @@
           </div>    
         <div id="map">
           <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBiMePwLxtiRiDgEXE81BqjFnTkslLqIA&callback=initMap&v=weekly&libraries=places&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDa_ZbHW-6swbjtv8PdFhpB-gqxxdX8&callback=initMap&v=weekly&libraries=places&v=weekly"
             
             async
           ></script>
@@ -200,7 +200,7 @@
          // access API through XML and onclick HTML event, data is passed to API to return the relevant station as requested
          function getData(station, day){
           const xml= new XMLHttpRequest(),
-          url = "http://34.243.114.11:8080/prediction?day=" + day + "&station_num=" + station;
+          url = "http://34.243.114.11:443/prediction?day=" + day + "&station_num=" + station;
           xml.onreadystatechange = function() {
               if (xml.readyState == 4  && xml.status == 200) {
                   console.log(xml.responseText);
