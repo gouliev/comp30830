@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import numpy as np
 import requests
 import pickle
-from pandas._libs import json # prediction route could not turn numpy array to json so pandas libs was needed
+from pandas._libs import json
 from flask_cors import CORS
 
 # imported CORS to bypass CORS policy that was preventing JS from accessing the API
@@ -39,14 +39,15 @@ def prediction():
     times = np.arange(24)
     times_feature = times.reshape(-1, 1)  # shapes array for function compatability
     model = None
-    with (open(f"comp30830/Flask/stations/{station_num}/{day}.pkl", "rb")) as openfile:
-        model = pickle.load(openfile) # uses JS data to access relevant pickle file
+
+    # uses JS data to access relevant pickle file
+    with (open(f"comp30830/Flask/static/stations/{station_num}/{day}.pkl", "rb")) as openfile:
+        model = pickle.load(openfile)
         
     result = model.predict(times_feature)
     data = {'hour': times, 'prediction': result}
     return json.dumps(data)
     # dumps trained prediction arrays into a JSON file
 
-
 if __name__ == '__main__':
-    app.run()
+    app.run(host = '0.0.0.0', port=8080)
